@@ -1,0 +1,13 @@
+BusyBox
+
+Mount /proc:
+mount -t proc proc /proc
+Mount /sys:
+mount -t sysfs sysfs /sys
+
+Launch QEMU:
+sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel u-boot/u-boot -sd sd.img -net tap,script=./qemu-myifup -net nic
+
+To avoid QEMU warning "Image format was not specified for 'boot.img' and probing guessed raw",
+SD image needs to be specified differently:
+sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel u-boot/u-boot -device sd-card,drive=mydrive -drive id=mydrive,if=none,format=raw,file=sd.img -net tap,script=./qemu-myifup -net nic

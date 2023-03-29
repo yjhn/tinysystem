@@ -1,0 +1,6 @@
+#!/bin/sh
+mount -a
+# It seems that mdev is not needed when CONFIG_DEVTMPFS_MOUNT is set?
+# see: https://serverfault.com/a/867119
+# /sbin/mdev
+/bin/hostname -F /etc/hostname

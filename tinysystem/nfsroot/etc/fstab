@@ -1,0 +1,10 @@
+# Column names:
+# device | mount point | fs type | options | backup | fsck order
+# backup should always be set to 0 as it is outdated and bad
+# fsck should be 1 for /, 0 or 2 for other file systems
+# (0 does not run fsck, 1 and 2 specify fsck order)
+proc /proc proc defaults 0 0
+sysfs /sys sysfs defaults 0 0
+devpts /dev/pts devpts defaults 0 0
+# https://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp#comment615073_45509
+tmpfs /dev/shm tmpfs defaults 0 0

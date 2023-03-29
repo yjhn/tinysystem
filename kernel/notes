@@ -1,0 +1,9 @@
+To compile for Vexpress-A9 board, set environment variables ('export' or at every invocation):
+CROSS_COMPILE=arm-linux-gnueabihf-
+ARCH=arm
+
+Set target:
+make vexpress_defconfig
+
+make nconfig
+search is F8

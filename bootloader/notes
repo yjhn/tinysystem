@@ -1,0 +1,40 @@
+# U-BOOT
+
+Taken from:
+https://bootlin.com/doc/training/embedded-linux-qemu/embedded-linux-qemu-labs.pdf
+
+## Dependencies
+
+arm-linux-gnueabihf-gcc
+bison
+flex
+
+## Build
+
+make vexpress_ca9x4_defconfig
+export CROSS_COMPILE=arm-linux-gnueabihf-
+
+changes in make nconfig:  
+- "Environment":
+  - unset "Environment in flash memory"
+  - set "Environment is in a FAT filesystem"
+  - set "Name of the block device for the environment" to "mmc"
+  - set "Device and partition for where to store the environment in FAT" to "0:1"
+- "Command line interface":  
+  - "Environment commands":  
+    - set "editenv"
+  - "Boot commands":
+    - set "bootd"
+
+## Launch QEMU
+
+sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel u-boot/u-boot -sd sd.img -net tap,script=./qemu-myifup -net nic
+
+To avoid QEMU warning "Image format was not specified for 'boot.img' and probing guessed raw",
+SD image needs to be specified differently:
+sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel u-boot/u-boot -device sd-card,drive=mydrive -drive id=mydrive,if=none,format=raw,file=sd.img -net tap,script=./qemu-myifup -net nic
+
+## Tips
+
+To exit QEMU:
+CTRL+A, then X
