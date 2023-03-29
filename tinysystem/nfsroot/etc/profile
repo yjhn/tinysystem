@@ -1,0 +1,12 @@
+# Default ash shell configuration file
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Shell prompt
+# https://ss64.com/bash/syntax-prompt.html
+#PS1="[$(printenv USER)@$(hostname):${PWD}]$ "
+export PS1='\u@\h:\w\$ '
