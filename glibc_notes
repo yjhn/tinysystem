@@ -1,0 +1,25 @@
+Required for compilation:
+gcc-arm-linux-gnueabihf
+g++-arm-linux-gnueabihf
+
+some ohter stuff, the build system will complain
+
+(in glibc dir)
+mkdir build
+cd build
+
+../configure --prefix=/usr --host=arm-linux-gnueabihf
+
+We can give more options to configure:
+../configure arm-linux-gnueabihf --prefix=/usr --build=x86_64-unknown-linux-gnu --host=arm-linux-gnueabihf
+
+or
+../configure --prefix=/usr --build=x86_64-unknown-linux-gnu --host=arm-linux-gnueabihf
+
+but it doesn't seem to affect the output (these params are probably inferred).
+
+NPROC="$(nproc)"
+MAKE_THREADS="$(echo ${NPROC} \* 2 | bc -l)"
+make -s -j"${MAKE_THREADS}"
+
+make install -s -j"${MAKE_THREADS}" DESTDIR=/home/studentas/learning/linux_from_scratch/tinysystem/nfsroot
