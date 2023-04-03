@@ -2,11 +2,11 @@
 
 set -eux
 
-mkdir sysroot
+mkdir nfsroot
 
-cp -r etc sysroot
+cp -r etc nfsroot
 
-cd sysroot
+cd nfsroot
 mkdir usr sys dev proc
 
 cd usr

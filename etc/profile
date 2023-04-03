@@ -8,5 +8,8 @@ esac
 
 # Shell prompt
 # https://ss64.com/bash/syntax-prompt.html
-#PS1="[$(printenv USER)@$(hostname):${PWD}]$ "
 export PS1='\u@\h:\w\$ '
+
+ldd() {
+  LD_TRACE_LOADED_OBJECTS=1 $1;
+}
