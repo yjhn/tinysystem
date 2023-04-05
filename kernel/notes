@@ -2,6 +2,8 @@ To compile for Vexpress-A9 board, set environment variables ('export' or at ever
 CROSS_COMPILE=arm-linux-gnueabihf-
 ARCH=arm
 
+When ARCH is set, 'make help' will list targets for that arch.
+
 Set target:
 make vexpress_defconfig
 
