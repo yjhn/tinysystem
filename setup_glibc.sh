@@ -8,10 +8,12 @@ MAKE_THREADS="$(echo $(nproc) \* 2 | bc -l)"
 
 cd ./glibc
 
+rm -rI build
 mkdir build
 cd build
 
-../configure --prefix=/usr --build=x86_64-unknown-linux-gnu --host=arm-linux-gnueabihf
+# We only suport kernel 5.15 and above.
+../configure --enable-kernel=5.15.0 --prefix=/usr --build=x86_64-unknown-linux-gnu --host=arm-linux-gnueabihf
 
 make -s -j"${MAKE_THREADS}"
 make -s -j"${MAKE_THREADS}" install DESTDIR=/home/studentas/learning/linux_from_scratch/tinysystem/nfsroot
